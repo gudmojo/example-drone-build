@@ -16,6 +16,17 @@ pipeline:
       matrix:
         SHARD: 1
 
+#  build-and-push-container-to-ecr:
+#    image: plugins/ecr
+#    region: us-east-1
+#    repo: <account_id>.dkr.ecr.us-east-1.amazonaws.com/bar
+#    tags:
+#      - latest
+#      - 1.0.1
+#      - 1.0
+#    build_args:
+#      - HTTP_PROXY=http://yourproxy.com
+
   system-test:
     image: golang
     commands:
@@ -45,6 +56,17 @@ pipeline:
       matrix:
         SHARD: 1
 
+#  slack:
+#    image: plugins/slack
+#    webhook: https://hooks.slack.com/services/...
+#    channel: dev
+#    template: |
+#      {{ #success build.status }}
+#        build {{ build.number }} succeeded. Good job.
+#      {{ else }}
+#        build {{ build.number }} failed. Fix me please.
+#      {{ /success }}
+
 services:
   database:
     image: mysql
@@ -52,13 +74,9 @@ services:
       - MYSQL_DATABASE=test
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
 
-#  notify:
-#    image: plugins/slack
-#    channel: developers
-#    username: drone
-
 matrix:
   include:
     - SHARD: 1
     - SHARD: 2
     - SHARD: 3
+    - SHARD: 4
