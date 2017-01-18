@@ -9,6 +9,9 @@ pipeline:
 services:
   database:
     image: mysql
+    environment:
+      - MYSQL_DATABASE=test
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
 
 #  notify:
 #    image: plugins/slack
