@@ -16,6 +16,7 @@ pipeline:
       matrix:
         SHARD: 1
 
+# FIXME: We don't want to build one container for each shard
 #  build-and-push-container-to-ecr:
 #    image: plugins/ecr
 #    region: us-east-1
@@ -56,6 +57,7 @@ pipeline:
       matrix:
         SHARD: 1
 
+# FIXME: We don't want to send a message for each shard
 #  slack:
 #    image: plugins/slack
 #    webhook: https://hooks.slack.com/services/...
