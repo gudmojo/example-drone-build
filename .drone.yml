@@ -1,0 +1,15 @@
+pipeline:
+  backend:
+    image: golang
+    commands:
+      - true
+
+  frontend:
+    image: node:6
+    commands:
+      - false
+
+#  notify:
+#    image: plugins/slack
+#    channel: developers
+#    username: drone
