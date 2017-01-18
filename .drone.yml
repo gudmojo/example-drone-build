@@ -6,6 +6,10 @@ pipeline:
       - bash drone/${COMMAND}.sh ${SHARD}
       - date
 
+services:
+  database:
+    image: mysql
+
 #  notify:
 #    image: plugins/slack
 #    channel: developers
