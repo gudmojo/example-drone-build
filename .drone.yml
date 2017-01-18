@@ -3,21 +3,8 @@ pipeline:
     image: golang
     commands:
       - date
-      - true
-
-  step-b:
-    image: golang
-    commands:
+      - drone/${COMMAND}.sh ${SHARD}
       - date
-      - echo ${PARALLEL_KEY}
-      - sleep 30
-      - date
-
-  step-c:
-    image: golang
-    commands:
-      - date
-      - true
 
 #  notify:
 #    image: plugins/slack
@@ -25,14 +12,14 @@ pipeline:
 #    username: drone
 
 matrix:
-  PARALLEL_KEY:
-    - T1
-    - T2
-    - T3
-    - T4
-    - T5
-    - T6
-    - T7
-    - T8
-    - T9
-    - T10
+  include:
+    - COMMAND: lint
+      SHARD: all
+    - COMMAND: system-test
+      SHARD: 1
+    - COMMAND: system-test
+      SHARD: 2
+    - COMMAND: system-test
+      SHARD: 3
+    - COMMAND: load-test
+      SHARD: all
