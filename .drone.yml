@@ -1,10 +1,37 @@
 pipeline:
-  step-a:
+  compile:
     image: golang
     commands:
       - date
-      - bash drone/${COMMAND}.sh ${SHARD}
+      - bash compile.sh
       - date
+
+  lint:
+    image: golang
+    commands:
+      - date
+      - bash lint.sh
+      - date
+    when:
+      matrix:
+        SHARD: 1
+
+  system-test:
+    image: golang
+    commands:
+      - date
+      - bash system-test.sh ${SHARD}
+      - date
+
+  deploy-demo:
+    image: golang
+    commands:
+      - date
+      - bash deploy-demo.sh
+      - date
+    when:
+      matrix:
+        SHARD: 1
 
 services:
   database:
@@ -12,11 +39,6 @@ services:
     environment:
       - MYSQL_DATABASE=test
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-    when:
-      matrix:
-        - COMMAND: system-test
-        - COMMAND: load-test
-
 
 #  notify:
 #    image: plugins/slack
@@ -25,13 +47,6 @@ services:
 
 matrix:
   include:
-    - COMMAND: lint
-      SHARD: all
-    - COMMAND: system-test
-      SHARD: 1
-    - COMMAND: system-test
-      SHARD: 2
-    - COMMAND: system-test
-      SHARD: 3
-    - COMMAND: load-test
-      SHARD: all
+    - SHARD: 1
+    - SHARD: 2
+    - SHARD: 3
