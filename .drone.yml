@@ -7,7 +7,7 @@ pipeline:
   frontend:
     image: node:6
     commands:
-      - true
+      - false
 
 #  notify:
 #    image: plugins/slack
