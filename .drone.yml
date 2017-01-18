@@ -28,7 +28,7 @@ pipeline:
     image: golang
     commands:
       - date
-      - bash load-test.sh ${SHARD}
+      - bash load-test.sh
       - date
     when:
       matrix:
