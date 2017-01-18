@@ -2,6 +2,5 @@
 set -e
 set -u
 set -x
-SHARD=$1
-echo "Running system test for shard $SHARD"
+echo "Running load test "
 sleep 20

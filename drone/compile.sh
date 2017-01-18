@@ -3,5 +3,5 @@ set -e
 set -u
 set -x
 SHARD=$1
-echo "Running lint"
+echo "Running compile"
 sleep 5

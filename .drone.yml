@@ -23,6 +23,13 @@ pipeline:
       - bash system-test.sh ${SHARD}
       - date
 
+  load-test:
+    image: golang
+    commands:
+      - date
+      - bash load-test.sh ${SHARD}
+      - date
+
   deploy-demo:
     image: golang
     commands:
