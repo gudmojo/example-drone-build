@@ -4,4 +4,4 @@ set -u
 set -x
 SHARD=$1
 echo "Running lint"
-sleep 30
+sleep 10

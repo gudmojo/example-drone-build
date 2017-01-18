@@ -14,8 +14,8 @@ services:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     when:
       matrix:
-        exclude:
-          COMMAND: lint
+        - COMMAND: system-test
+        - COMMAND: load-test
 
 
 #  notify:
