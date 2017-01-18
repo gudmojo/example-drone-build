@@ -23,13 +23,18 @@ pipeline:
       - bash system-test.sh ${SHARD}
       - date
 
+  # FIXME: We don't want to load test if system tests in other shards failed.
   load-test:
     image: golang
     commands:
       - date
       - bash load-test.sh ${SHARD}
       - date
+    when:
+      matrix:
+        SHARD: 1
 
+  # FIXME: We don't want to deploy if system tests in other shards failed.
   deploy-demo:
     image: golang
     commands:
