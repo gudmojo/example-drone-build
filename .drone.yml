@@ -3,7 +3,7 @@ pipeline:
     image: golang
     commands:
       - date
-      - drone/${COMMAND}.sh ${SHARD}
+      - bash drone/${COMMAND}.sh ${SHARD}
       - date
 
 #  notify:
