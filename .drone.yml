@@ -12,6 +12,11 @@ services:
     environment:
       - MYSQL_DATABASE=test
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    when:
+      matrix:
+        exclude:
+          COMMAND: lint
+
 
 #  notify:
 #    image: plugins/slack
